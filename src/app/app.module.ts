@@ -7,20 +7,34 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HomeComponent } from './home/home.component';
+import { TokenInterceptor } from './token.interceptor';
+import { AddRoleComponent } from './add-role/add-role.component';
+import { AllRolesComponent } from './all-roles/all-roles.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    AddRoleComponent,
+    AllRolesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,7 +16,8 @@ export class UserService {
   }
 
   addRole(role:any):Observable<any>{
-    return this.http.post(environment.url+"admin/role",role)
+    console.log("addrole api calling ")
+    return this.http.post(environment.url+"admin/addrole",role)
   }
 
   deleteRole(roleId:any):Observable<any>{
